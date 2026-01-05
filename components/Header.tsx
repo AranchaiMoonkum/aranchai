@@ -1,0 +1,47 @@
+"use client";
+
+import Link from "next/link";
+import { cn } from "@/lib/utils";
+import { usePathname } from "next/navigation";
+
+export function Header() {
+  const location = usePathname();
+
+  const isActive = (href: string) => location === href;
+
+  return (
+    <header className="sticky top-0 z-50 bg-background/80 backdrop-blur-md border-b border-border/50">
+      <div className="container max-w-4xl mx-auto px-6 py-4">
+        <nav className="flex items-center justify-between">
+          <Link
+            href="/"
+            className="font-display text-2xl tracking-tight hover:text-primary"
+          >
+            aranchai
+          </Link>
+
+          <div className="flex items-center gap-8">
+            <Link
+              href="/"
+              className={cn(
+                "text-sm font-medium hover:text-primary",
+                isActive("/") ? "text-primary" : "text-muted-foreground",
+              )}
+            >
+              Writing
+            </Link>
+            <Link
+              href="/about"
+              className={cn(
+                "text-sm font-medium hover:text-primary",
+                isActive("/about") ? "text-primary" : "text-muted-foreground",
+              )}
+            >
+              About
+            </Link>
+          </div>
+        </nav>
+      </div>
+    </header>
+  );
+}
