@@ -1,6 +1,5 @@
 import { Footer } from "@/components/Footer";
 import { getAllPosts, getPostBySlug } from "@/lib/posts";
-import { format } from "date-fns";
 import type { Metadata } from "next";
 
 export async function generateStaticParams() {
@@ -43,7 +42,11 @@ export default async function PostPage({
           dateTime={post.meta.date}
           className="text-xl text-muted-foreground"
         >
-          {format(new Date(post.meta.date), "MMMM d, yyyy")}
+          {new Intl.DateTimeFormat('en-US', { 
+            year: 'numeric', 
+            month: 'long', 
+            day: 'numeric' 
+          }).format(new Date(post.meta.date))}
         </time>
       </header>
 

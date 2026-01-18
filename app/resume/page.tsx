@@ -14,7 +14,7 @@ export default function ResumePage() {
 
         <div className="prose md:prose-base lg:prose-lg">
           <p>
-            Welcome to my resume! It consits with two parts. The first part is
+            Welcome to my resume! It consists of two parts. The first part is
             my side-project, and the second part is my work experience.
           </p>
         </div>

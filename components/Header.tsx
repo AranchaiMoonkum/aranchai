@@ -16,7 +16,7 @@ export function Header() {
         <nav className="flex items-center justify-between">
           <Link
             href="/"
-            className="font-display text-2xl tracking-tight hover:text-primary"
+            className="font-display text-2xl tracking-tight hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-sm"
           >
             aranchai
           </Link>
@@ -25,7 +25,7 @@ export function Header() {
             <Link
               href="/"
               className={cn(
-                "text-sm font-medium hover:text-primary",
+                "text-sm font-medium hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-sm",
                 isActive("/") ? "text-primary" : "text-muted-foreground",
               )}
             >
@@ -34,7 +34,7 @@ export function Header() {
             <Link
               href="/about"
               className={cn(
-                "text-sm font-medium hover:text-primary",
+                "text-sm font-medium hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-sm",
                 isActive("/about") ? "text-primary" : "text-muted-foreground",
               )}
             >

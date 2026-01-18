@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { getAllPosts } from "@/lib/posts";
-import { format } from "date-fns";
 
 export default async function Home() {
   const posts = await getAllPosts();
@@ -17,7 +16,11 @@ export default async function Home() {
                   dateTime={p.meta.date}
                   className="text-muted-foreground text-xl"
                 >
-                  {format(postDate, "MMMM d, yyyy")}
+                  {new Intl.DateTimeFormat('en-US', { 
+                    year: 'numeric', 
+                    month: 'long', 
+                    day: 'numeric' 
+                  }).format(postDate)}
                 </time>
                 <Link
                   href={`/posts/${p.slug}`}
