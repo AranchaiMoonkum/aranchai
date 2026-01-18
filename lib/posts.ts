@@ -1,6 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import matter from "gray-matter";
+import { cache } from "react";
 
 import { unified } from "unified";
 import remarkParse from "remark-parse";
@@ -17,30 +18,33 @@ export type PostMeta = {
   date: string;
 };
 
-export async function getAllPosts() {
+export const getAllPosts = cache(async () => {
   const files = fs.readdirSync(postsDir).filter((f) => f.endsWith(".md"));
 
-  const posts = files.map((file) => {
-    const slug = file.replace(/\.md$/, "");
-    const fullPath = path.join(postsDir, file);
-    const raw = fs.readFileSync(fullPath, "utf8");
-    const { data } = matter(raw);
+  // Parallelize file reads using Promise.all
+  const posts = await Promise.all(
+    files.map(async (file) => {
+      const slug = file.replace(/\.md$/, "");
+      const fullPath = path.join(postsDir, file);
+      const raw = await fs.promises.readFile(fullPath, "utf8");
+      const { data } = matter(raw);
 
-    return {
-      slug,
-      meta: data as PostMeta,
-    };
-  });
+      return {
+        slug,
+        meta: data as PostMeta,
+      };
+    }),
+  );
 
   // Sort newest first (string ISO dates recommended)
   posts.sort((a, b) => (a.meta.date < b.meta.date ? 1 : -1));
 
   return posts;
-}
+});
 
-export async function getPostBySlug(slug: string) {
+export const getPostBySlug = cache(async (slug: string) => {
   const fullPath = path.join(postsDir, `${slug}.md`);
-  const raw = fs.readFileSync(fullPath, "utf8");
+  const raw = await fs.promises.readFile(fullPath, "utf8");
 
   const { data, content } = matter(raw);
 
@@ -64,4 +68,4 @@ export async function getPostBySlug(slug: string) {
     meta: data as PostMeta,
     contentHtml: processed.toString(),
   };
-}
+});
