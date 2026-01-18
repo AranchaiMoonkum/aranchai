@@ -16,13 +16,14 @@ export default function AboutPage() {
               <p>
                 I am Aranchai Moonkum, a software engineer who loves to code and
                 building things. You can find me on{" "}
-                <a href="https://github.com/AranchaiMoonkum" target="_blank">
+                <a href="https://github.com/AranchaiMoonkum" target="_blank" rel="noopener noreferrer">
                   GitHub
                 </a>{" "}
                 and{" "}
                 <a
                   href="https://www.linkedin.com/in/aranchai-moonkum-57b60832b/"
                   target="_blank"
+                  rel="noopener noreferrer"
                 >
                   LinkedIn
                 </a>
