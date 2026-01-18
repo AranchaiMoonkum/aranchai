@@ -5,7 +5,9 @@ import { Libre_Baskerville } from "next/font/google";
 import { Header } from "@/components/Header";
 
 const libre_baskerville = Libre_Baskerville({
+  weight: ["400", "700"],
   subsets: ["latin"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
