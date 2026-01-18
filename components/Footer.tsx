@@ -7,6 +7,7 @@ export function Footer() {
         <a
           href="mailto:moonkum.aranchai@gmail.com"
           target="_blank"
+          rel="noopener noreferrer"
           className="flex gap-2 items-center"
         >
           <Mail className="w-4 h-4" />
@@ -15,6 +16,7 @@ export function Footer() {
         <a
           href="https://github.com/AranchaiMoonkum"
           target="_blank"
+          rel="noopener noreferrer"
           className="flex gap-2 items-center"
         >
           <Github className="w-4 h-4" />
