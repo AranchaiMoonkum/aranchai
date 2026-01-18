@@ -3,11 +3,12 @@
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
+import { useCallback } from "react";
 
 export function Header() {
   const location = usePathname();
 
-  const isActive = (href: string) => location === href;
+  const isActive = useCallback((href: string) => location === href, [location]);
 
   return (
     <header className="sticky top-0 z-50 bg-background/80 backdrop-blur-md border-b border-border/50">
